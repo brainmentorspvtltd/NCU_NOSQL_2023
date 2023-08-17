@@ -1,0 +1,55 @@
+Basic crud
+
+
+To create database or switch to particular database
+use databse_name
+
+
+
+To display databases:-show dbs
+and for collections:- show collections
+
+to create collection:-
+db.createCollection()
+
+capped collections
+db.createCollection(name,options)
+options include:-
+1.capped-true,false
+2.size:-it store bytes
+3.max:-it stores no. of documents
+4.autoIndexId:-it stores automated generated id
+
+
+
+to insert more than one document at a time
+insertMany()
+
+
+
+
+
+
+
+
+
+db.createCollection(name,options)
+options include
+.capped:true,false
+.size:bytes
+.max:no. of documents
+.AutoIndexId:id
+
+CRUD
+create:-done
+Read:-find()
+
+
+to insert one document at a time:-
+db.collection_name.insertOne({})
+
+to insert more than one document at a time:-
+db.collection_name.insertMany([])
+
+to find the size of document
+db.customers.find().size();
