@@ -1,0 +1,38 @@
+CRUD 
+ read:-
+find()
+findOne()
+
+create:-
+insertOne()
+insertMany()
+
+update:-
+updateOne()
+updateMany()
+replaceOne()
+
+
+delete:-
+deleteOne()
+deleteMany()
+
+db.movies.find().size():- it gives size(count) of database 
+db.movies.count():- it gives count of the documents present in database.
+db.customers.find().limit(2):- it displays/reads first two documents.
+db.customers.find().sort({age:1})//sorts in ascending order.
+db.customers.find().sort({age:-1})// sorts in descending order.
+
+db.customers.updateOne({name:'john'},{$set:{name:'Sakshi'}});
+db.customers.updateMany({age:22},{$set:{eligible:true}});
+
+upsert Query
+
+db.customers.updateOne({name:"amit"},{$set:{"address.country":"India"}},{upsert:true});
+ 
+To drop a collection
+db.customers.drop();
+
+//To replace a document
+
+db.customers.replaceOne({name:"Krish"},{name:"Anuj",age:30,branch:"CSE",department:"HR",email:"anu@gmail.com",address:"Gurugram"});

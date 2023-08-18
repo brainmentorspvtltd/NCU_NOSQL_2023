@@ -1,0 +1,963 @@
+18/8/23
+
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 64def6d4f29e229186c3833e
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.9.1
+Using MongoDB:          6.0.8
+Using Mongosh:          1.9.1
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-08-16T13:49:48.628+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin        40.00 KiB
+config       72.00 KiB
+local        72.00 KiB
+rkgit_db    196.00 KiB
+shopapp     144.00 KiB
+shopingapp   88.00 KiB
+test> use shopapp
+switched to db shopapp
+shopapp> show collections
+customers
+movies
+shopapp> db.movies.find();
+[
+  {
+    _id: ObjectId("64d5d5ef54c41a8dee924d69"),
+    name: 'Avengers',
+    rating: 9
+  },
+  { _id: ObjectId("64d5d61a54c41a8dee924d6a"), name: 'Kgf', rating: 8 },
+  {
+    _id: ObjectId("64d5d62654c41a8dee924d6b"),
+    name: 'Ironman',
+    rating: 8.2
+  },
+  {
+    _id: ObjectId("64d5d64554c41a8dee924d6c"),
+    name: 'Hulk',
+    rating: 7
+  },
+  {
+    _id: ObjectId("64d5d65a54c41a8dee924d6d"),
+    name: 'Avengers End Game',
+    rating: 8.7
+  }
+]
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'john',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  }
+]
+shopapp> db.customers.findOne();
+{
+  _id: ObjectId("64d5c5a554c41a8dee924d64"),
+  name: 'john',
+  email: 'john@gmail.com',
+  address: { city: 'gurugram', place: 'ncu', state: 'up' },
+  phone: [ 9900990099, 1234567890 ],
+  dob: ISODate("1990-07-01T18:30:00.000Z")
+}
+shopapp> show collections
+customers
+movies
+shopapp> db.movies.find();
+[
+  {
+    _id: ObjectId("64d5d5ef54c41a8dee924d69"),
+    name: 'Avengers',
+    rating: 9
+  },
+  { _id: ObjectId("64d5d61a54c41a8dee924d6a"), name: 'Kgf', rating: 8 },
+  {
+    _id: ObjectId("64d5d62654c41a8dee924d6b"),
+    name: 'Ironman',
+    rating: 8.2
+  },
+  {
+    _id: ObjectId("64d5d64554c41a8dee924d6c"),
+    name: 'Hulk',
+    rating: 7
+  },
+  {
+    _id: ObjectId("64d5d65a54c41a8dee924d6d"),
+    name: 'Avengers End Game',
+    rating: 8.7
+  }
+]
+shopapp> db.movies.deleteOne({name:'Ironman'})
+{ acknowledged: true, deletedCount: 1 }
+shopapp> db.movies.find();
+[
+  {
+    _id: ObjectId("64d5d5ef54c41a8dee924d69"),
+    name: 'Avengers',
+    rating: 9
+  },
+  { _id: ObjectId("64d5d61a54c41a8dee924d6a"), name: 'Kgf', rating: 8 },
+  {
+    _id: ObjectId("64d5d64554c41a8dee924d6c"),
+    name: 'Hulk',
+    rating: 7
+  },
+  {
+    _id: ObjectId("64d5d65a54c41a8dee924d6d"),
+    name: 'Avengers End Game',
+    rating: 8.7
+  }
+]
+shopapp> db.movies.deleteOne({});
+{ acknowledged: true, deletedCount: 1 }
+shopapp> db.movies.find();
+[
+  { _id: ObjectId("64d5d61a54c41a8dee924d6a"), name: 'Kgf', rating: 8 },
+  {
+    _id: ObjectId("64d5d64554c41a8dee924d6c"),
+    name: 'Hulk',
+    rating: 7
+  },
+  {
+    _id: ObjectId("64d5d65a54c41a8dee924d6d"),
+    name: 'Avengers End Game',
+    rating: 8.7
+  }
+]
+shopapp> db.movies.deleteMany({});
+{ acknowledged: true, deletedCount: 3 }
+shopapp> db.movies.find();
+
+shopapp> db.movies.find().size();
+0
+shopapp> db.movies.count();
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+0
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'john',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  }
+]
+shopapp> db.customers.find().limit(2);
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'john',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  }
+]
+shopapp> db.customers.find().sort({age:1});
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'john',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  }
+]
+shopapp> db.customers.find().sort({age:-1});
+[
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'john',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  }
+]
+shopapp> db.customers.updateOne({name:"john"},{$set:{name:'sakshi'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'sakshi',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  }
+]
+shopapp> db.customers.updateOne({age:22},{$set:{eligible:true}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'sakshi',
+    email: 'john@gmail.com',
+    address: { city: 'gurugram', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  }
+]
+shopapp> db.customers.updateOne({name:"sakshi"},{$set:{"address.city":"Noida"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'sakshi',
+    email: 'john@gmail.com',
+    address: { city: 'Noida', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  }
+]
+shopapp> db.customers.updateOne({name:"ajay"},{$set:{"address.city":"Noida"}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64df09a68c93583f0620e49a"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'sakshi',
+    email: 'john@gmail.com',
+    address: { city: 'Noida', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  }
+]
+shopapp> db.customers.updateOne({name:'sakshi'},{$set:{"address.city":"Noida"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'sakshi',
+    email: 'john@gmail.com',
+    address: { city: 'Noida', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  }
+]
+shopapp> db.customers.updateOne({name:"amit"},{$set:{"address.country":"India"}},{upsert:true});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64df0db48c93583f0620e57a"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'sakshi',
+    email: 'john@gmail.com',
+    address: { city: 'Noida', place: 'ncu', state: 'up' },
+    phone: [ 9900990099, 1234567890 ],
+    dob: ISODate("1990-07-01T18:30:00.000Z")
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp> db.customers.replaceOne({},{name:"Anu",age:30,branch:"CSE",department:"HR",email:"anu@gmail.com",address:"Gurugram"});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Krish',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp> db.customers.replaceOne({name:"Krish"},{name:"Anuj",age:30,branch:"CSE",department:"HR",email:"anu@gmail.com",address:"Gurugram"});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Anuj',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp>
