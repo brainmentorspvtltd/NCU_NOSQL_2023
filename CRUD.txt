@@ -36,3 +36,13 @@ db.customers.drop();
 //To replace a document
 
 db.customers.replaceOne({name:"Krish"},{name:"Anuj",age:30,branch:"CSE",department:"HR",email:"anu@gmail.com",address:"Gurugram"});
+
+comparison operator:-
+1.$eq= equality operator
+2.$lt= less than 
+3.$gt= greater than
+4.$lte= less than equal to
+5.$gte= greater than equal to
+6.$ne= not equals
+7. $in= in operator(alternative of or)
+8.$nin= not in operator
