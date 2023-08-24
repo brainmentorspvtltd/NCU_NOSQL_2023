@@ -1,0 +1,2881 @@
+Array Operations:CRUD
+$
+$push: ye replicate krega chahe ho ya nhi
+$addToSet: nye add krna,unique rkhega phle se hai to enter nhi krega
+$set
+$pop
+$each
+$position
+$pull:ye condition bhi le leta hai delete ke liye
+
+
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 64e6e23c1ed44bc5ad574917
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.9.1
+Using MongoDB:          6.0.8
+Using Mongosh:          1.9.1
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-08-16T13:49:48.628+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> db.products.insertMany([
+,
+... {
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }"discount":5
+Uncaught:
+SyntaxError: Unexpected token, expected "," (13:1)
+
+  11 | "display":"1.3 inch",
+  12 | "weight":0.2
+> 13 | }"discount":5
+     |  ^
+  14 |
+
+test> },
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | },
+    | ^
+  2 |
+
+test> {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... },
+... "discount":5
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... },
+... "discount":5
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... },
+... "discount":5
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... },
+... "discount":5
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... },
+... "discount":5
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... },
+... "discount":5
+... }
+... ]
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Adidas shoes",
+    |         ^
+  3 | "p_price":16000,
+  4 | "p_brand":"Adidas",
+  5 | "p_category":"shoes",
+
+test> db.products.insertMany([
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ]);
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "p_brand":"Titan",
+  5 | "p_category":"watch",
+
+test> db.products.insertMany([[
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ])
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "p_brand":"Titan",
+  5 | "p_category":"watch",
+
+test> db.products.insertMany([
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ]);
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "p_brand":"Titan",
+  5 | "p_category":"watch",
+
+test> db.products.insertMany([[
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+
+test> db.products.insertOne({)
+Uncaught:
+SyntaxError: Unexpected token (1:23)
+
+> 1 | db.products.insertOne({)
+    |                        ^
+  2 |
+
+test> "p_name":"Titan smart watch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:8)
+
+> 1 | "p_name":"Titan smart watch",
+    |         ^
+  2 |
+
+test> "p_price":8000,
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "p_price":8000,
+    |          ^
+  2 |
+
+test> "p_brand":"Titan",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "p_brand":"Titan",
+    |          ^
+  2 |
+
+test> "p_category":"watch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 | "p_category":"watch",
+    |             ^
+  2 |
+
+test> "color":["white","gray","silver","black","pink"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:7)
+
+> 1 | "color":["white","gray","silver","black","pink"],
+    |        ^
+  2 |
+
+test> "p_details":{
+Uncaught:
+SyntaxError: Missing semicolon. (1:11)
+
+> 1 | "p_details":{
+    |            ^
+  2 |
+
+test> "features":["heartbeat","steps","calories"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:10)
+
+> 1 | "features":["heartbeat","steps","calories"],
+    |           ^
+  2 |
+
+test> "battery":"300mAH",
+Uncaught:
+shopingapp> db.products.insertMany([
+ries"],
+...     {
+...     "p_name":"Titan smart watch",
+...      "p_price":8000,
+...      "p_brand":"Titan",
+...      "p_category":"watch",
+...      "color":["white","gray","silver","black","pink"],
+...      "p_details":{
+...         "features":["heartbeat","steps","calo        "battery":"300mAH",
+Uncaught:
+SyntaxError: Unexpected token, expected "," (9:54)
+
+   7 |      "color":["white","gray","silver","black","pink"],
+   8 |      "p_details":{
+>  9 |         "features":["heartbeat","steps","calo        "battery":"300mAH",
+     |                                                       ^
+  10 |
+
+shopingapp>         "display":"1.3 inch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:17)
+
+> 1 |         "display":"1.3 inch",
+    |                  ^
+  2 |
+
+shopingapp>         "weight":0.2
+Uncaught:
+SyntaxError: Missing semicolon. (1:16)
+
+> 1 |         "weight":0.2
+    |                 ^
+  2 |
+
+shopingapp>      },
+Uncaught:
+SyntaxError: Unexpected token (1:5)
+
+> 1 |      },
+    |      ^
+  2 |
+
+shopingapp>      "discount":5
+Uncaught:
+SyntaxError: Missing semicolon. (1:15)
+
+> 1 |      "discount":5
+    |                ^
+  2 |
+
+shopingapp> },
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | },
+    | ^
+  2 |
+
+shopingapp> {
+...     "p_name":"Adidas shoes",
+...     "p_price":16000,
+...     "p_brand":"Adidas",
+...     "p_category":"shoes",
+...     "color":["white","gray","silver","black","pink"],
+...     "p_details":{
+...        "features":["heartbeat","steps","calories"],
+...        "battery":"300mAH",
+...        "display":"1.3 inch",
+...        "weight":0.2
+...     },
+...     "discount":5
+... },
+... {
+...     "p_name":"noise watch",
+...     "p_price":15000,
+...     "p_brand":"noise",
+...     "p_category":"watch",
+...     "color":["white","gray","silver","black","pink"],
+...     "p_details":{
+...        "features":["heartbeat","steps","calories"],
+...        "battery":"300mAH",
+...        "display":"1.3 inch",
+...        "weight":0.2
+...     },
+...     "discount":5
+... },
+... {
+...     "p_name":"Apple iphone",
+...     "p_price":80000,
+...     "p_brand":"apple",
+...     "p_category":"mobile",
+...     "color":["white","gray","silver"],
+...     "p_details":{
+...        "features":["heartbeat","steps","calories"],
+...        "battery":"300mAH",
+...        "display":"1.3 inch",
+...        "weight":0.2
+...     },
+...     "discount":5
+... },
+... {
+...     "p_name":"Apple Macbook pro",
+...     "p_price":120000,
+...     "p_brand":"apple",
+...     "p_category":"laptop",
+...     "color":["gray","silver"],
+...     "p_details":{
+...        "battery":"300mAH",
+...        "display":"1.3 inch",
+...        "weight":0.2
+...     },
+...     "discount":5
+... },
+... {
+...     "p_name":"Redmi 11",
+...     "p_price":18000,
+...     "p_brand":"Redmi",
+...     "p_category":"mobile",
+...     "color":["white","gray","silver","black","green"],
+...     "p_details":{
+...        "battery":"300mAH",
+...        "display":"1.3 inch",
+...        "weight":0.2
+...     },
+...     "discount":5
+... },
+... {
+...     "p_name":"Asus Tuf",
+...     "p_price":80000,
+...     "p_brand":"Asus",
+...     "p_category":"laptop",
+...     "color":["black","red"],
+...     "p_details":{
+...        "battery":"300mAH",
+...        "display":"1.3 inch",
+...        "weight":0.2
+...     },
+...     "discount":5
+... }
+... ])
+Uncaught:
+SyntaxError: Missing semicolon. (2:12)
+
+  1 | {
+> 2 |     "p_name":"Adidas shoes",
+    |             ^
+  3 |     "p_price":16000,
+  4 |     "p_brand":"Adidas",
+  5 |     "p_category":"shoes",
+
+shopingapp> }
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | }
+    | ^
+  2 |
+
+shopingapp> ]cls
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | ]cls
+    | ^
+  2 |
+
+shopingapp> db.products.insertMany([
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ])
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "p_brand":"Titan",
+  5 | "p_category":"watch",
+
+shopingapp> db.products.insertMany([[
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ]
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "p_brand":"Titan",
+  5 | "p_category":"watch",
+
+shopingapp> db.products.insertMany([
+{
+
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "p_brand":"Titan",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }},
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ]);
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "p_brand":"Titan",
+  5 | "p_category":"watch",
+
+shopingapp> db.products.insertOne({)
+"p_name":"Titan smart watch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:8)
+
+> 1 | "p_name":"Titan smart watch",
+    |         ^
+  2 |
+
+shopingapp> "p_price":8000,
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "p_price":8000,
+    |          ^
+  2 |
+
+shopingapp> "p_brand":"Titan",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "p_brand":"Titan",
+    |          ^
+  2 |
+
+shopingapp> "p_category":"watch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 | "p_category":"watch",
+    |             ^
+  2 |
+
+shopingapp> "color":["white","gray","silver","black","pink"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:7)
+
+> 1 | "color":["white","gray","silver","black","pink"],
+    |        ^
+  2 |
+
+shopingapp> "p_details":{
+Uncaught:
+SyntaxError: Missing semicolon. (1:11)
+
+> 1 | "p_details":{
+    |            ^
+  2 |
+
+shopingapp> "features":["heartbeat","steps","calories"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:10)
+
+> 1 | "features":["heartbeat","steps","calories"],
+    |           ^
+  2 |
+
+shopingapp> "battery":"300mAH",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "battery":"300mAH",
+    |          ^
+  2 |
+
+shopingapp> "display":"1.3 inch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "display":"1.3 inch",
+    |          ^
+  2 |
+
+shopingapp> "weight":0.2
+Uncaught:
+SyntaxError: Missing semicolon. (1:8)
+
+> 1 | "weight":0.2
+    |         ^
+  2 |
+
+shopingapp> }
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | }
+    | ^
+  2 |
+
+shopingapp> db.products.insertOne({p_name:'Titan smart watch',p_price:8000,color:["white","gray","blue"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e6e4721ed44bc5ad574918")
+}
+shopingapp> db.products.insertOne({p_name:'Apple iphone',p_price:80000,color:["white","gray","blue","black"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e6e4901ed44bc5ad574919")
+}
+shopingapp> db.products.insertOne({p_name:'Apple mackbookpro',p_price:200000,color:["white","gray","silver"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e6e4b11ed44bc5ad57491a")
+}
+shopingapp> db.products.insertOne({p_name:'Adidas shoes',p_price:20000,color:["white","gray","blue"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e6e4d01ed44bc5ad57491b")
+}
+shopingapp> db.products.insertOne({p_name:'puma shoes',p_price:2000,color:["white","gray","blue","black"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e6e4e51ed44bc5ad57491c")
+}
+shopingapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4901ed44bc5ad574919"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  },
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  },
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_name: 'Adidas shoes',
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4e51ed44bc5ad57491c"),
+    p_name: 'puma shoes',
+    p_price: 2000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  }
+]
+shopingapp> db.products.find({p_name:'Adidas shoes'},{p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  }
+]
+shopingapp> db.products.find({p_name:{$eq:'Adidas shoes'}},{p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  }
+]
+shopingapp> db.products.find({p_price:{$lt:10000}},{p_name:1});
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch'
+  },
+  { _id: ObjectId("64e6e4e51ed44bc5ad57491c"), p_name: 'puma shoes' }
+]
+shopingapp> db.products.find({color:{$in:["white","black"]}},{p_name:1,p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4901ed44bc5ad574919"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  },
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  },
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_name: 'Adidas shoes',
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4e51ed44bc5ad57491c"),
+    p_name: 'puma shoes',
+    p_price: 2000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  }
+]
+shopingapp> db.products.find({color:{$in:["blue","black"]}},{p_name:1,p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4901ed44bc5ad574919"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  },
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_name: 'Adidas shoes',
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4e51ed44bc5ad57491c"),
+    p_name: 'puma shoes',
+    p_price: 2000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  }
+]
+shopingapp> db.products.find({$and:[{color:"gray"}]},{p_name:1,p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4901ed44bc5ad574919"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  },
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  },
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_name: 'Adidas shoes',
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4e51ed44bc5ad57491c"),
+    p_name: 'puma shoes',
+    p_price: 2000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  }
+]
+shopingapp> db.products.find({$and:[{color:"silver"}]},{p_name:1,p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  }
+]
+shopingapp> db.products.find({$and:[{color:"silver"},{p_price:{$lt:10000}}]},{p_name:1,p_price:1,color:1});
+
+shopingapp> db.products.find({$and:[{color:"silver"},{p_price:{$gt:10000}}]},{p_name:1,p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  }
+]
+shopingapp> db.products.find({$and:[{color:{$in:["blue","black"]}},{p_price:{$gt:10000}}]},{p_name:1,p_price:1,color:1});
+[
+  {
+    _id: ObjectId("64e6e4901ed44bc5ad574919"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  },
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_name: 'Adidas shoes',
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  }
+]
+shopingapp> db.createCollection('Product');
+{ ok: 1 }
+shopingapp> db.Product.insertMany([
+16000,
+... {
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Adidas shoes",
+... "p_price":"p_brand":"Adidas",
+Uncaught:
+SyntaxError: Unexpected token, expected "," (15:19)
+
+  13 | {
+  14 | "p_name":"Adidas shoes",
+> 15 | "p_price":"p_brand":"Adidas",
+     |                    ^
+  16 |
+
+shopingapp> "p_category":"shoes",
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 | "p_category":"shoes",
+    |             ^
+  2 |
+
+shopingapp> "color":["white","gray","silver","black","pink"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:7)
+
+> 1 | "color":["white","gray","silver","black","pink"],
+    |        ^
+  2 |
+
+shopingapp> "p_details":{
+Uncaught:
+SyntaxError: Missing semicolon. (1:11)
+
+> 1 | "p_details":{
+    |            ^
+  2 |
+
+shopingapp> "features":["heartbeat","steps","calories"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:10)
+
+> 1 | "features":["heartbeat","steps","calories"],
+    |           ^
+  2 |
+
+shopingapp> "battery":"300mAH",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "battery":"300mAH",
+    |          ^
+  2 |
+
+shopingapp> "display":"1.3 inch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "display":"1.3 inch",
+    |          ^
+  2 |
+
+shopingapp> "weight":0.2
+Uncaught:
+SyntaxError: Missing semicolon. (1:8)
+
+> 1 | "weight":0.2
+    |         ^
+  2 |
+
+shopingapp> }
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | }
+    | ^
+  2 |
+
+shopingapp> },
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | },
+    | ^
+  2 |
+
+shopingapp> {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ]
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"noise watch",
+    |         ^
+  3 | "p_price":15000,
+  4 | "p_brand":"noise",
+  5 | "p_category":"watch",
+
+shopingapp> db.Product.inesrtMany([
+{
+16000,
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Adidas shoes",
+... "p_price":"p_brand":"Adidas",
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "color":["white","gray","silver","black","pink"],
+  5 | "p_details":{
+
+shopingapp> "p_category":"shoes",
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 | "p_category":"shoes",
+    |             ^
+  2 |
+
+shopingapp> "color":["white","gray","silver","black","pink"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:7)
+
+> 1 | "color":["white","gray","silver","black","pink"],
+    |        ^
+  2 |
+
+shopingapp> "p_details":{
+Uncaught:
+SyntaxError: Missing semicolon. (1:11)
+
+> 1 | "p_details":{
+    |            ^
+  2 |
+
+shopingapp> "features":["heartbeat","steps","calories"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:10)
+
+> 1 | "features":["heartbeat","steps","calories"],
+    |           ^
+  2 |
+
+shopingapp> "battery":"300mAH",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "battery":"300mAH",
+    |          ^
+  2 |
+
+shopingapp> "display":"1.3 inch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "display":"1.3 inch",
+    |          ^
+  2 |
+
+shopingapp> "weight":0.2
+Uncaught:
+SyntaxError: Missing semicolon. (1:8)
+
+> 1 | "weight":0.2
+    |         ^
+  2 |
+
+shopingapp> }
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | }
+    | ^
+  2 |
+
+shopingapp> },
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | },
+    | ^
+  2 |
+
+shopingapp> {
+... "p_name":"noise watch",
+... "p_price":15000,
+... "p_brand":"noise",
+... "p_category":"watch",
+... "color":["white","gray","silver","black","pink"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"],
+... "p_details":{
+... "features":["heartbeat","steps","calories"],
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"],
+... "p_details":{
+... "battery":"300mAH",
+... "display":"1.3 inch",
+... "weight":0.2
+... }
+... }
+... ]
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"noise watch",
+    |         ^
+  3 | "p_price":15000,
+  4 | "p_brand":"noise",
+  5 | "p_category":"watch",
+
+shopingapp> db.Product.insertMany([
+{
+e watch",
+... "p_name":"Titan smart watch",
+... "p_price":8000,
+... "color":["white","gray","silver","black","pink"]
+... },
+... {
+... "p_name":"Adidas shoes",
+... "p_price":16000,
+... "p_brand":"Adidas",
+... "p_category":"shoes",
+... "color":["white","gray","silver","black","pink"]
+... },
+... {
+... "p_name":"nois"p_price":15000,
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Titan smart watch",
+    |         ^
+  3 | "p_price":8000,
+  4 | "color":["white","gray","silver","black","pink"]
+  5 | },
+
+shopingapp> "p_brand":"noise",
+Uncaught:
+SyntaxError: Missing semicolon. (1:9)
+
+> 1 | "p_brand":"noise",
+    |          ^
+  2 |
+
+shopingapp> "p_category":"watch",
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 | "p_category":"watch",
+    |             ^
+  2 |
+
+shopingapp> "color":["white","gray","silver","black","pink"]
+Uncaught:
+SyntaxError: Missing semicolon. (1:7)
+
+> 1 | "color":["white","gray","silver","black","pink"]
+    |        ^
+  2 |
+
+shopingapp> },
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | },
+    | ^
+  2 |
+
+shopingapp> {
+... "p_name":"Apple iphone",
+... "p_price":80000,
+... "p_brand":"apple",
+... "p_category":"mobile",
+... "color":["white","gray","silver"]
+... },
+... {
+... "p_name":"Apple Macbook pro",
+... "p_price":120000,
+... "p_brand":"apple",
+... "p_category":"laptop",
+... "color":["gray","silver"]
+... },
+... {
+... "p_name":"Redmi 11",
+... "p_price":18000,
+... "p_brand":"Redmi",
+... "p_category":"mobile",
+... "color":["white","gray","silver","black","green"]
+... },
+... {
+... "p_name":"Asus Tuf",
+... "p_price":80000,
+... "p_brand":"Asus",
+... "p_category":"laptop",
+... "color":["black","red"]
+... }
+... ]
+Uncaught:
+SyntaxError: Missing semicolon. (2:8)
+
+  1 | {
+> 2 | "p_name":"Apple iphone",
+    |         ^
+  3 | "p_price":80000,
+  4 | "p_brand":"apple",
+  5 | "p_category":"mobile",
+
+shopingapp> { "p_name":"Apple iphone", "p_price":80000, "p_brand":"apple", "p_category":"mobile", "color":["white","gray","silver"] }, { "p_name":"Apple Macbook pro", "p_price":120000, "p_brand":"apple", "p_category":"laptop", "color":["gray","silver"] }, { "p_name":"Redmi 11", "p_price":18000, "p_brand":"Redmi", "p_category":"mobile", "color":["white","gray","silver","black","green"] }, { "p_name":"Asus Tuf", "p_price":80000, "p_brand":"Asus", "p_category":"laptop", "color":["black","red"] } ];
+Uncaught:
+SyntaxError: Missing semicolon. (1:10)
+
+> 1 | { "p_name":"Apple iphone", "p_price":80000, "p_brand":"apple", "p_category":"mobile", "color":["white","gray","silver"] }, { "p_name":"Apple Macbook pro", "p_price":120000, "p_brand":"apple", "p_category":"laptop", "color":["gray","silver"] }, { "p_name":"Redmi 11", "p_price":18000, "p_brand":"Redmi", "p_category":"mobile", "color":["white","gray","silver","black","green"] }, { "p_name":"Asus Tuf", "p_price":80000, "p_brand":"Asus", "p_category":"laptop", "color":["black","red"] } ];
+    |           ^
+  2 |
+
+shopingapp> { "p_name":"Apple iphone", "p_price":80000, "p_brand":"apple", "p_category":"mobile", "color":["white","gray","silver"] }, { "p_name":"Apple Macbook pro", "p_price":120000, "p_brand":"apple", "p_category":"laptop", "color":["gray","silver"] }, { "p_name":"Redmi 11", "p_price":18000, "p_brand":"Redmi", "p_category":"mobile", "color":["white","gray","silver","black","green"] }, { "p_name":"Asus Tuf", "p_price":80000, "p_brand":"Asus", "p_category":"laptop", "color":["black","red"] } ]);
+Uncaught:
+SyntaxError: Missing semicolon. (1:10)
+
+> 1 | { "p_name":"Apple iphone", "p_price":80000, "p_brand":"apple", "p_category":"mobile", "color":["white","gray","silver"] }, { "p_name":"Apple Macbook pro", "p_price":120000, "p_brand":"apple", "p_category":"laptop", "color":["gray","silver"] }, { "p_name":"Redmi 11", "p_price":18000, "p_brand":"Redmi", "p_category":"mobile", "color":["white","gray","silver","black","green"] }, { "p_name":"Asus Tuf", "p_price":80000, "p_brand":"Asus", "p_category":"laptop", "color":["black","red"] } ]);
+    |           ^
+  2 |
+
+shopingapp> db.Products.insertMany([
+   "name":"mohit",
+...     {
+...         "name":"shyam",
+...         "email":"shyam@gmail.com",
+...         "age":34,
+...         "address":{
+...             "colony":"Govindpuram",
+...             "district":"Ghaziabad",
+...             "pin":201003,
+...             "state":"UP"
+...         }
+...     },
+...     {
+...              "email":"mohit@gmail.com",
+...         "age":30,
+...         "address":{
+...             "colony":"Govindpuram",
+...             "district":"Ghaziabad",
+...             "pin":201003,
+...             "state":"UP"
+...         }
+...     },
+...     {
+...         "name":"Ram",
+...         "email":"Ram@gmail.com",
+...         "age":30,
+...         "address":{
+...             "colony":"NandGram",
+...             "district":"Ghaziabad",
+...             "pin":201003,
+...             "state":"UP"
+...         }
+...     },
+...     {
+...         "name":"Krish",
+...         "email":"krish@gmail.com",
+...         "age":22,
+...         "address":{
+...             "colony":"Indrapuram",
+...             "district":"Ghaziabad",
+...             "pin":201003,
+...             "state":"UP"
+...         }
+...     }
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64e6eec91ed44bc5ad57491d"),
+    '1': ObjectId("64e6eec91ed44bc5ad57491e"),
+    '2': ObjectId("64e6eec91ed44bc5ad57491f"),
+    '3': ObjectId("64e6eec91ed44bc5ad574920")
+  }
+}
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true
+  }
+]
+shopingapp> db.customers.updateOne({name:'sakshi'},{$set:{marks:[89,67,98,78]}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4901ed44bc5ad574919"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  },
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  },
+  {
+    _id: ObjectId("64e6e4d01ed44bc5ad57491b"),
+    p_name: 'Adidas shoes',
+    p_price: 20000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4e51ed44bc5ad57491c"),
+    p_name: 'puma shoes',
+    p_price: 2000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  }
+]
+shopingapp> CLS
+ReferenceError: CLS is not defined
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true,
+    marks: [ 89, 67, 98, 78 ]
+  }
+]
+shopingapp> db.customers.updateOne({name:'sakshi'},{$push:{"marks":{$each:[100,20]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+
+shopingapp> db.products.find({$not:[{p_price:{$lt:10000}},{p_price:{$gt:100000}}]});
+MongoServerError: unknown top level operator: $not. If you are trying to negate an entire expression, use $nor.
+shopingapp> db.products.find({p_price:{$not:{$gt:10000}}});
+[
+  {
+    _id: ObjectId("64e6e4721ed44bc5ad574918"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'white', 'gray', 'blue' ]
+  },
+  {
+    _id: ObjectId("64e6e4e51ed44bc5ad57491c"),
+    p_name: 'puma shoes',
+    p_price: 2000,
+    color: [ 'white', 'gray', 'blue', 'black' ]
+  }
+]
+shopingapp> db.products.find({color:{$not:{$eq:"blue"}}});
+[
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  }
+]
+shopingapp> db.products.find({color:{$not:/^blue+/}});
+[
+  {
+    _id: ObjectId("64e6e4b11ed44bc5ad57491a"),
+    p_name: 'Apple mackbookpro',
+    p_price: 200000,
+    color: [ 'white', 'gray', 'silver' ]
+  }
+]
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya'
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true,
+    marks: [ 89, 67, 98, 78, 100, 20 ]
+  }
+]
+shopingapp> db.customers.updateOne({name:'Ram'},{$set:{marks:[87,63,97,78]}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.customers.updateOne({name:'Anuj'},{$set:{marks:[65,90,55,75]}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com',
+    marks: [ 65, 90, 55, 75 ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya',
+    marks: [ 87, 63, 97, 78 ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true,
+    marks: [ 89, 67, 98, 78, 100, 20 ]
+  }
+]
+shopingapp> db.customers.updateOne({name:"Ram"},{$push:{"marks":{$each:[99,100]}}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com',
+    marks: [ 65, 90, 55, 75 ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya',
+    marks: [ 87, 63, 97, 78, 99, 100 ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true,
+    marks: [ 89, 67, 98, 78, 100, 20 ]
+  }
+]
+shopingapp> db.customers.updateOne({name:"Ram"},{$push:{"marks":{$each:[99,100],$position:1}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com',
+    marks: [ 65, 90, 55, 75 ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya',
+    marks: [
+      87, 99, 100,  63,
+      97, 78,  99, 100
+    ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true,
+    marks: [ 89, 67, 98, 78, 100, 20 ]
+  }
+]
+shopingapp> db.customers.updateOne({name:'sakshi',marks:89},{$set:{"marks.$":90}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopingapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78ccf"),
+    name: 'Anuj',
+    age: 18,
+    department: 'IT',
+    email: 'anu@gmail.com',
+    marks: [ 65, 90, 55, 75 ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd0"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd1"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Ayodhya',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    colony: 'Ayodhya',
+    marks: [
+      87, 99, 100,  63,
+      97, 78,  99, 100
+    ]
+  },
+  {
+    _id: ObjectId("64d5efb32e8a1bc5f2d78cd2"),
+    name: 'sakshi',
+    email: 'krish@gmail.com',
+    age: 22,
+    address: {
+      colony: 'Indrapuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    },
+    eligible: true,
+    marks: [ 90, 67, 98, 78, 100, 20 ]
+  }
+]
+shopingapp> show dbs
+admin        40.00 KiB
+config       72.00 KiB
+local        72.00 KiB
+rkgit_db    196.00 KiB
+shopapp     144.00 KiB
+shopingapp  200.00 KiB
+vips_app     72.00 KiB
+shopingapp> use shopapp
+switched to db shopapp
+shopapp> show collections
+customers
+movies
+shopapp> db.createCollection('products');
+{ ok: 1 }
+shopapp> db.products.insertOne({p_name:'Adidas shoes',p_price:8000,color:["white","blue","red"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e707981ed44bc5ad574921")
+}
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ]
+  }
+]
+shopapp> db.products.insertOne({p_name:'Apple macbook',p_price:200000,color:["silver","gray"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e707fa1ed44bc5ad574922")
+}
+shopapp> db.products.insertOne({p_name:'Apple iphone',p_price:80000,color:["silver","red","white","gray"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e708251ed44bc5ad574923")
+}
+shopapp> db.products.insertOne({p_name:'Titan smart watch',p_price:8000,color:["silver","red","white","yellow"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e708481ed44bc5ad574924")
+}
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ]
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({p_name:'Adidas shoes'});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ]
+  }
+]
+shopapp> db.products.find({p_name:{$eq:'Adidas shoes'}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ]
+  }
+]
+shopapp> db.products.updateOne({p_name:'Adidas shoes'},{$set:{p_details:{features:"Good",}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({'p_details.features':{$eq:'Good'}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  }
+]
+shopapp> db.products.find({color:{$eq:"blue"}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  }
+]
+shopapp> db.products.find({p_price:{$lt:10000}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({color:{$in:['blue','red']}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({$and:[{color:"silver"},{p_price:{$lt:10000}}]});
+[
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({$or:[{color:"silver"},{p_price:{$lt:10000}}]});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({p_price:{$not:{$gt:10000}}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Anuj',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp> db.customers.updateOne({name:'Anuj'},{$set:{'marks':[56,78,90,87]}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Anuj',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram',
+    marks: [ 56, 78, 90, 87 ]
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp> db.customers.updateOne({name:'Anuj'},{$push:{'marks':{$each:[50,60],$position:1}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Anuj',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram',
+    marks: [ 56, 50, 60, 78, 90, 87 ]
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp> db.customers.updateOne({name:'Anuj',marks:56},{$set:{'marks.$':96}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d68"),
+    name: 'Anuj',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram',
+    marks: [ 96, 50, 60, 78, 90, 87 ]
+  },
+  {
+    _id: ObjectId("64df09a68c93583f0620e49a"),
+    name: 'ajay',
+    address: { city: 'Noida' }
+  },
+  {
+    _id: ObjectId("64df0db48c93583f0620e57a"),
+    name: 'amit',
+    address: { country: 'India' }
+  }
+]
+shopapp>
