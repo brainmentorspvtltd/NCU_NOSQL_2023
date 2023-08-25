@@ -1,0 +1,485 @@
+Element Query Operators
+1. $exists:- searches the data with particular field name
+{field:{$exists:<boolean value>,condition}}
+2. $type{$type:"<type>"};
+
+special Array operators
+1.$size:-selects the document according to array size
+2.$all:-selects the document that contains particular value
+3.$elemMatch:- selects the doc that contains an array field  that has at least one match
+
+
+
+todays code:-
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 64e8370c2ab41d03deb3fe21
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.9.1
+Using MongoDB:          6.0.8
+Using Mongosh:          1.9.1
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-08-16T13:49:48.628+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin        40.00 KiB
+config       72.00 KiB
+local        72.00 KiB
+rkgit_db    196.00 KiB
+shopapp     216.00 KiB
+shopingapp  200.00 KiB
+vips_app     72.00 KiB
+test> use shopapp
+switched to db shopapp
+shopapp> show collections
+customers
+movies
+products
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.customers.find();
+[
+  {
+    _id: ObjectId("64d5c5a554c41a8dee924d64"),
+    name: 'Anu',
+    age: 30,
+    branch: 'CSE',
+    department: 'HR',
+    email: 'anu@gmail.com',
+    address: 'Gurugram'
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d65"),
+    name: 'shyam',
+    email: 'shyam@gmail.com',
+    age: 34,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d66"),
+    email: 'mohit@gmail.com',
+    age: 30,
+    address: {
+      colony: 'Govindpuram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+  },
+  {
+    _id: ObjectId("64d5cbcd54c41a8dee924d67"),
+    name: 'Ram',
+    email: 'Ram@gmail.com',
+    age: 30,
+    address: {
+      colony: 'NandGram',
+      district: 'Ghaziabad',
+      pin: 201003,
+      state: 'UP'
+    }
+
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.find({p_name:{$exists:true}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' }
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ]
+  }
+]
+shopapp> db.products.updateOne({p_name:'Titan smart watch'},{$set:{p_category:watch}});
+ReferenceError: watch is not defined
+shopapp> db.products.updateOne({p_name:'Titan smart watch'},{$set:{p_category:'watch'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.products.updateOne({p_name:'Adidas shoes'},{$set:{p_category:'shoes'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({p_category:{$exists:true}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({p_category:{$exists:true,$lt:10000}});
+
+shopapp> db.products.find({p_price:{$exists:true,$lt:10000}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({p_price:{$type:'number'}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: 8000,
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.updateOne({p_name:'Adidas shoes'},{$set:{p_price:'7000'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: '7000',
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({p_price:{$type:'number'}});
+[
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({p_price:{$type:'1'}});
+MongoServerError: Unknown type name alias: 1
+shopapp> db.products.find({p_price:{$type:1}});
+
+shopapp> db.products.find({p_price:{$type:2}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: '7000',
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  }
+]
+shopapp> db.products.find({p_price:{$type:1}});
+
+shopapp> db.products.find({color:{$size:3}},{p_name:1,color:1});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    color: [ 'white', 'blue', 'red' ]
+  }
+]
+shopapp> db.products.find({color:{$size:3}});
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: '7000',
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  }
+]
+shopapp> db.products.find({$or:[{color:{$size:2}},{color:{$size:4}}]});
+[
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({color:{$all:["white","silver"]}});
+[
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({p_price:{$eleMatch:{$lt:10000}}});
+MongoServerError: unknown operator: $eleMatch
+shopapp> db.products.find({p_price:{$elematch:{$lt:10000}}});
+MongoServerError: unknown operator: $elematch
+shopapp> db.products.find({p_price:{$elemMatch:{$lt:10000}}});
+
+shopapp> db.products.find({p_price:{$elemMatch:{$gt:10000}}});
+
+shopapp> db.products.find();
+[
+  {
+    _id: ObjectId("64e707981ed44bc5ad574921"),
+    p_name: 'Adidas shoes',
+    p_price: '7000',
+    color: [ 'white', 'blue', 'red' ],
+    p_details: { features: 'Good' },
+    p_category: 'shoes'
+  },
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp> db.products.find({"p_price":{$elemMatch:{$gt:10000}}});
+
+shopapp> db.products.find({color:{$elemMatch:{$eq:'silver'}}});
+[
+  {
+    _id: ObjectId("64e707fa1ed44bc5ad574922"),
+    p_name: 'Apple macbook',
+    p_price: 200000,
+    color: [ 'silver', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708251ed44bc5ad574923"),
+    p_name: 'Apple iphone',
+    p_price: 80000,
+    color: [ 'silver', 'red', 'white', 'gray' ]
+  },
+  {
+    _id: ObjectId("64e708481ed44bc5ad574924"),
+    p_name: 'Titan smart watch',
+    p_price: 8000,
+    color: [ 'silver', 'red', 'white', 'yellow' ],
+    p_category: 'watch'
+  }
+]
+shopapp>
+
